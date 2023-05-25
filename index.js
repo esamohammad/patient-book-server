@@ -36,7 +36,17 @@ const client = new MongoClient(uri, {
 
 async function run() {
     try {
+        //!collection--DB
+        const usersCollection = client.db('patient-book').collection('users');
         
+
+        
+        //!Users Get api- all Users 
+        app.get('/users', async (req, res) => {
+            const query = {};
+            const result = await usersCollection.find(query).toArray()
+            res.send(result)
+        })
 
     }
     finally {
